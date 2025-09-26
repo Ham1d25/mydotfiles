@@ -1,0 +1,91 @@
+# i3 config - themed to match screenshot
+set $mod Mod4
+# Fonts
+font pango:Pixel Operator Mono Nerd Font 11
+
+# Terminals and apps
+bindsym $mod+Return exec kitty
+bindsym $mod+d exec rofi -show drun
+
+# Focus movement (vim keys)
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Move windows
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# Layouts & modes (tiling / floating / stacking / tabbed)
+# Toggle floating for focused window
+bindsym $mod+Shift+space floating toggle
+# Fullscreen
+bindsym $mod+f fullscreen toggle
+# Toggle split orientation
+bindsym $mod+e layout toggle split
+# Stacking / Tabbed / Split layouts
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+v layout splitv
+bindsym $mod+h layout splith
+
+# Focus mode (enter a focus mode where focus follows the mouse keys)
+mode "focus_mode" {
+    bindsym h focus left
+    bindsym j focus down
+    bindsym k focus up
+    bindsym l focus right
+    bindsym Return mode "default"
+}
+bindsym $mod+Shift+f mode "focus_mode"
+
+# Gaps (requires i3-gaps)
+gaps inner 8
+gaps outer 10
+
+# Titlebar / window decoration fonts & padding (if using a patch that supports it)
+# (Some compositors or i3 builds ignore titlefont settings; left as a hint)
+# for_frame bordered 1
+
+# Autostart apps
+exec_always --no-startup-id nitrogen --restore
+exec_always --no-startup-id conky -c ~/.config/conky/conky.conf
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id xsetroot -cursor_name left_ptr

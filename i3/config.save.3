@@ -1,0 +1,128 @@
+# i3 config file (for Arch Linux)
+#
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+
+# Set default modifier key (Mod4 is the Windows key)
+set $mod Mod4
+
+# Font for window titles. Supports Pango markup. Pango is a library for
+# layout and rendering of text, and determines the space a string
+# takes on the screen.
+font pango:monospace 8
+
+# This enables the use of unicode characters in the i3 bar.
+# font pango:DejaVu Sans Mono 8
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec kitty
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start dmenu (a program launcher)
+# bindsym $mod+d exec dmenu_run
+# There also is the (new) i3-dmenu-desktop which only entries from .desktop files and thus is a lot faster:
+bindsym $mod+d exec --no-startup-id rofi -show drun
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, default)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# change focus between tiling / floating windows
+bindsym $mod+Shift+space floating toggle
+
+# change focus to the parent container
+bindsym $mod+a focus parent
+
+# change focus to the child container
+# bindsym $mod+c focus child
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec i3-msg exit
+
+# Resize window (you can also use the mouse for that)
+mode 
+
+
+
+# i3-gaps configuration
+gaps inner 10
+gaps outer 5
+
+# Set colors for i3
+# class                 border  background text    indicator child_border
+client.focused          #663399 #663399 #ffffff #663399 #663399
+client.focused_inactive #333333 #333333 #888888 #333333 #333333
+client.unfocused        #333333 #333333 #888888 #333333 #333333
+client.urgent           #ff0000 #ff0000 #ffffff #ff0000 #ff0000
+client.placeholder      #000000 #0c0c0c #ffffff #000000 #000000
+
+# Set colors for the status bar
+bar {
+    status_command i3blocks
+    colors {
+        background #282828
+        statusline #ebdbb2
+        separator #665c54
+
+        focused_workspace  #663399 #663399 #ffffff
+        active_workspace   #333333 #333333 #888888
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace   #ff0000 #ff0000 #ffffff
+    }
+}
+
+
+
+
+# Start Polybar when i3 starts
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+
+
+
+exec_always --no-startup-id /home/ubuntu/set_wallpaper.sh
+
+
