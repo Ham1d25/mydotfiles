@@ -9,10 +9,9 @@ font pango:monospace 8
 floating_modifier $mod
 
 # Applications run
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec alacritty
 bindsym $mod+q kill
 bindsym $mod+x exec firefox
-bindsym $mod+b exex kitty -e btop
 bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+Shift+t exec i3lock
 bindsym $mod+Shift+f exec nautilus
@@ -20,7 +19,8 @@ bindsym $mod+Shift+f exec nautilus
 # Focus movement
 bindsym $mod+j focus left
 bindsym $mod+k focus down
-bindsym $mod+l focus up
+bindsym $mod+l focus 
+bindsym $mod+z vscodium
 bindsym $mod+semicolon focus right
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -120,3 +120,23 @@ for_window [con_mark="__focused__"] border pixel
 new_window pixel 3
 smart_borders on
 
+
+# resize mode
+mode "resize" {
+    bindsym l resize shrink width 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym j resize shrink height 10 px or 10 ppt
+    bindsym h resize grow width 10 px or 10 ppt
+
+    # use arrow keys too
+    bindsym Right resize shrink width 10 px or 10 ppt
+    bindsym Up resize grow height 10 px or 10 ppt
+    bindsym Down resize shrink height 10 px or 10 ppt
+    bindsym Left resize grow width 10 px or 10 ppt
+
+    # exit resize mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
